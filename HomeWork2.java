@@ -23,9 +23,9 @@ public class HomeWork2 {
 
     private static void positiveOrNegative(int a) {
         if(a >=0){
-            System.out.println("Число положительное");
+            System.out.println("Р§РёСЃР»Рѕ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕРµ");
         }else if (a < 0){
-            System.out.println("Число отрицательное");
+            System.out.println("Р§РёСЃР»Рѕ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ");
         }
     }
 
@@ -47,11 +47,11 @@ public class HomeWork2 {
 
     private static boolean determineLeapYear(int date) {
         if(date % 4 == 0 && date % 100 != 0 || date % 400 == 0){
-            System.out.println( date + " високосный");
+            System.out.println( date + " РІРёСЃРѕРєРѕСЃРЅС‹Р№");
             return true;
 
         }else{
-            System.out.println(date + " не високосный");
+            System.out.println(date + " РЅРµ РІРёСЃРѕРєРѕСЃРЅС‹Р№");
             return false;
         }
     }
