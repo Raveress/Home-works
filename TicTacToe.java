@@ -4,16 +4,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
-    final static int SIZE = 3;
+    static Scanner in = new Scanner(System.in);
+    static Random random = new Random();
+
 
     final static char DOT_EMPTY = '•';
     final static char DOT_HUMAN = 'X';
     final static char DOT_AI = 'O';
 
-    static Scanner in = new Scanner(System.in);
-    static Random random = new Random();
 
-    final static char[][] MAP = new char[SIZE][SIZE];
+    final static int SIZE = in.nextInt();
+    static char[][] MAP = new char[SIZE][SIZE];
+
 
     final static String FIRST_HEADER_SYMBOL = "☻";
     final static String SPACE_MAP = "  ";
@@ -28,15 +30,26 @@ public class TicTacToe {
 
     }
 
+
     private static void turnGame() {
+
+
         do {
-            initMap();
+            init();
             printMap();
             playGame();
         } while (isContinueGame());
     }
 
+    private static void init(){
+        turnsCount = 0;
+        MAP = new char[SIZE][SIZE];
+        initMap();
+    }
+
+
     private static void initMap() {
+
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 MAP[i][j] = DOT_EMPTY;
@@ -134,12 +147,18 @@ public class TicTacToe {
     }
 
     private static boolean checkWin(char symbol) {
-        
-        return true;
+        boolean diagonalsRight = true;
+        boolean diagonalsLeft = true;
+        for (int i = 0; i < SIZE; i++) {
+            diagonalsRight = diagonalsRight & (MAP[i][i] == symbol);
+            diagonalsLeft = diagonalsLeft & (MAP[SIZE - i - 1][i] == symbol);
+
+        }
+        if(diagonalsRight || diagonalsLeft ){
+            return true;
+        }
+        return false;
     }
-
-
-
 
 
 
@@ -168,7 +187,7 @@ public class TicTacToe {
 
     private static boolean isContinueGame() {
         System.out.println("Resume? y\\n");
-        return switch (in.next()){
+        return switch (in.next()) {
             case "y", "+", "да", "конечно" -> true;
             default -> false;
         };
